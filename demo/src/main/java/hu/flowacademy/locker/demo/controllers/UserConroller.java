@@ -28,10 +28,7 @@ public class UserConroller {
 
     @PostMapping("/login")
     public String loginUser(UserDTO userDTO){
-      String userName =  userService.allUsers()
-              .stream().filter( n -> userDTO.getUsername().equals(n.getUsername()))
-              .toString();
-            return Jwts.builder().setSubject(userName).compact();
+        return userService.createJwts(userDTO);
     }
 
 
