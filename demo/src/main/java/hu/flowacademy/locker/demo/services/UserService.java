@@ -65,13 +65,13 @@ public class UserService {
     }
 
     public void setLocker(UserDTO userDTO){
+
       User user = userRepository.findByUsername(userDTO.getUsername());
           lockerRepository.findById(user.getId()).get().setClosed(true);
           user.getLocker().setClosed(true);
           userRepository.save(user);
         System.out.println("Keresett user: " + user);
    }
-
 
 
     public String createJwts(UserDTO userDTO){
