@@ -28,7 +28,7 @@ public class UserConroller {
     }
 
     @PostMapping("/login")
-    public String loginUser(UserDTO userDTO){
+    public String loginUser(@RequestBody UserDTO userDTO){
         userService.setLocker(userDTO);
         return userService.createJwts(userDTO);
     }
