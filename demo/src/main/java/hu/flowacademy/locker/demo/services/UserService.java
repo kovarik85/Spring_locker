@@ -42,7 +42,7 @@ public class UserService {
                 .toString();
 
     }
-    public void addUser(UserDTO userDTO) throws Exception {
+    public String addUser(UserDTO userDTO) throws Exception {
         Locker locker = new Locker();
         lockerRepository.save(locker);
             User user = User.builder()
@@ -53,9 +53,10 @@ public class UserService {
                     .build();
 
        if(findbyName(user).isEmpty()){
-           System.out.println(user);
-           userRepository.save(user);
+            userRepository.save(user);
+            return "User added successfully!";
        }
+       return "Username already in use!";
     }
 
     public List<User> findbyName(User user){
@@ -71,7 +72,6 @@ public class UserService {
           user.getLocker().setClosed(true);
           user.getLocker().setUserIdNumber(user.getId());
           userRepository.save(user);
-        System.out.println("Keresett user: " + user);
    }
 
     public String createJwts(UserDTO userDTO){

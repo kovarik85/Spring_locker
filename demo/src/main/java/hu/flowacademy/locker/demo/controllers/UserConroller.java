@@ -23,12 +23,11 @@ public class UserConroller {
     }
 
     @PostMapping("/register")
-    public void registerUser(@RequestBody UserDTO userDTO) throws Exception {
-        userService.addUser(userDTO);
+    public String registerUser(@RequestBody UserDTO userDTO) throws Exception {
+        return userService.addUser(userDTO);
     }
 
     @PostMapping("/login")
-
     public String loginUser(@RequestBody UserDTO userDTO){
         userService.setLocker(userDTO);
         return userService.createJwts(userDTO);

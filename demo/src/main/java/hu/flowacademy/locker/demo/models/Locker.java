@@ -1,9 +1,6 @@
 package hu.flowacademy.locker.demo.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.math.MathContext;
@@ -17,7 +14,8 @@ import java.util.Random;
 public class Locker {
 
     @Id
-    private Long id = new Random().nextLong();
+    @Column(unique = true)
+    private Long id = (long) Math.floor(Math.random() * 100 + 1);
 
     private boolean closed;
 
