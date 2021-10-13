@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.math.MathContext;
+import java.util.Random;
 
 @Data
 @Entity
@@ -15,13 +17,13 @@ import javax.persistence.*;
 public class Locker {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id = new Random().nextLong();
 
     private boolean closed;
 
     @OneToOne
     @JoinColumn
     private User user;
+    private Long userIdNumber;
 
 }

@@ -67,12 +67,12 @@ public class UserService {
     public void setLocker(UserDTO userDTO){
 
       User user = userRepository.findByUsername(userDTO.getUsername());
-          lockerRepository.findById(user.getId()).get().setClosed(true);
+          lockerRepository.findById(user.getLocker().getId()).get().setClosed(true);
           user.getLocker().setClosed(true);
+          user.getLocker().setUserIdNumber(user.getId());
           userRepository.save(user);
         System.out.println("Keresett user: " + user);
    }
-
 
     public String createJwts(UserDTO userDTO){
         return Jwts.builder()
@@ -80,6 +80,4 @@ public class UserService {
                 .signWith(SignatureAlgorithm.HS512, secret)
                 .compact();
     }
-
-
 }
